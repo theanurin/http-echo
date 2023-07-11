@@ -1,0 +1,11 @@
+./*
+
+!./README.md
+!./bin/server.dart
+!./docker/app.logo
+!./echo-service
+!./docker/docker-entrypoint.sh
+!./lib/args_parser.dart
+!./lib/settings.dart
+!./pubspec.lock
+!./pubspec.yaml
