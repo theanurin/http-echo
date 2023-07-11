@@ -1,0 +1,12 @@
+{
+	"name": "http-echo",
+	"version": "0.0.1",
+	"devDependencies": {},
+	"dependencies": {},
+	"main": "./src/index.js",
+	"types": "./src/index.d.ts",
+	"scripts": {
+		"build": "tsc"
+	},
+	"private": true
+}
