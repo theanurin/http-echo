@@ -31,4 +31,6 @@
 	"[json]": {
 		"editor.defaultFormatter": "vscode.json-language-features"
 	},
+	"application.experimental.rendererProfiling": true,
+	"cSpell.language": "en,lorem",
 }

@@ -1,6 +1,6 @@
 {
-	"//": "This is used in our build process. Also this file is used by VSCode",
-	"compilerOptions": {
+		"//": "This is used in our build process. Also this file is used by VSCode",
+		"compilerOptions": {
 		"alwaysStrict": true,
 		"declaration": true,
 		"experimentalDecorators": true,
@@ -16,5 +16,7 @@
 		"strictPropertyInitialization": true,
 		"strictFunctionTypes": true,
 		"strictBindCallApply": true,
+		"esModuleInterop": true,
+		"types": ["node", "express"]
 	}
 }
