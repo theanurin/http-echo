@@ -1,8 +1,16 @@
 import expressModule, { Express, Request, Response, NextFunction } from 'express';
 import concat from 'concat-stream';
-import os from 'node:os'
+import os from 'node:os';
 
 const app: Express = expressModule();
+
+function resolveHtmlRequested(acceptHeaderValue: string | undefined): boolean {
+	if (acceptHeaderValue !== undefined) {
+		return acceptHeaderValue.includes("text/html");
+	} else {
+		return false;
+	}
+}
 
 app.use(function (req: Request, res: Response, next: NextFunction) {
 	req.pipe(concat(function (data: Buffer): void {
@@ -12,7 +20,7 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
 });
 
 app.all('*', function (req: Request, res: Response) {
-		const resultData: any = {
+	const resultData: any = {
 		path: req.path,
 		headers: req.headers,
 		method: req.method,
@@ -32,9 +40,18 @@ app.all('*', function (req: Request, res: Response) {
 			remotePort: req.socket.remotePort,
 		}
 	};
+
+	const isHtmlRequested: boolean = resolveHtmlRequested(req.headers["accept"]);
+
 	const resultDataStr: string = JSON.stringify(resultData, null, '\t');
-	res.appendHeader("Content-Type", "application/json");
-	res.send(resultDataStr);
+	if (isHtmlRequested == false) {
+		res.appendHeader("Content-Type", "application/json");
+		res.send(resultDataStr);
+	} else {
+		res.appendHeader("Content-Type", "text/html");
+		// res.format({resultDataStr, "text/html": ()=>void function(){ res.send('<p>some html</p>');
+		res.send('<html><body><pre style="background-color:red; word-wrap: break-word; white-space: pre-wrap;">' + resultDataStr + "</pre></body></html>");
+	}
 })
 
 app.listen(3000)
