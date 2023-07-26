@@ -1,0 +1,7 @@
+./*
+
+!./src/index.ts
+!./bin/app.js
+!./package.json
+!./package-lock.json
+!./tsconfig.json

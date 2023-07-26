@@ -1,5 +1,6 @@
 node_modules
 packages
+.vscode
 
 src/**/*.d.ts
 src/**/*.js

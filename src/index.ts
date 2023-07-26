@@ -4,9 +4,15 @@ import os from 'node:os';
 
 const app: Express = expressModule();
 
-function resolveHtmlRequested(acceptHeaderValue: string | undefined): boolean {
+function resolveHtmlRequested(acceptHeaderValue: string | undefined): boolean{
 	if (acceptHeaderValue !== undefined) {
-		return acceptHeaderValue.includes("text/html");
+		let acceptArray: string[] = acceptHeaderValue.split(",");
+		for (let i = 0; i < acceptArray.length; i++) {
+			if (acceptArray[i] === "text/html") {
+				return true;
+			}
+		}
+		return false;
 	} else {
 		return false;
 	}
@@ -44,12 +50,11 @@ app.all('*', function (req: Request, res: Response) {
 	const isHtmlRequested: boolean = resolveHtmlRequested(req.headers["accept"]);
 
 	const resultDataStr: string = JSON.stringify(resultData, null, '\t');
-	if (isHtmlRequested == false) {
+	if (isHtmlRequested === false) {
 		res.appendHeader("Content-Type", "application/json");
 		res.send(resultDataStr);
 	} else {
 		res.appendHeader("Content-Type", "text/html");
-		// res.format({resultDataStr, "text/html": ()=>void function(){ res.send('<p>some html</p>');
 		res.send('<html><body><pre style="background-color:red; word-wrap: break-word; white-space: pre-wrap;">' + resultDataStr + "</pre></body></html>");
 	}
 })
