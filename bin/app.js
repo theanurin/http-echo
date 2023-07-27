@@ -17,3 +17,10 @@ require("../src/index.js");
 //     if (err) console.log(err);
 //     console.log("Server listening on PORT", PORT);
 // });
+const shutdownSignals = Object.freeze(["SIGTERM", "SIGINT"]);
+
+async function gracefulShutdown(signal) {
+	process.exit(0);
+}
+shutdownSignals.forEach((signal) => process.on(signal, () => gracefulShutdown(signal)));
+

@@ -1,10 +1,26 @@
 import expressModule, { Express, Request, Response, NextFunction } from 'express';
 import concat from 'concat-stream';
 import os from 'node:os';
+import morgan from 'morgan';
 
 const app: Express = expressModule();
 
-function resolveHtmlRequested(acceptHeaderValue: string | undefined): boolean{
+// print('Serving at http://${server.address.host}:${server.port}');
+console.log(
+	'  _   _   _____   _____   ____      _____    ____   _   _    ___  \n',
+	' | | | | |_   _| |_   _| |  _ \\    |____|  /____|  | | | | /  _  \\  \n',
+	' | |_| |   | |     | |   | |_) |   |  _|   | |     | |_| | | | | |  \n',
+	' |  _  |   | |     | |   |  __/    | |___  | |___  |  _  | | |_| |  \n',
+	' |_| |_|   |_|     |_|   |_|       |_____|  \\____| |_| |_|  \\___/   \n'
+	);
+	console.log('HTTP Echo Service v1.0.0');
+	console.log('');
+	console.log('Using custom background color for HTML page: http://${server.address.host}');
+	console.log('');
+	console.log('Listening for incoming HTTP requests on a port ${server.port}');
+	console.log('');
+
+function resolveHtmlRequested(acceptHeaderValue: string | undefined): boolean {
 	if (acceptHeaderValue !== undefined) {
 		let acceptArray: string[] = acceptHeaderValue.split(",");
 		for (let i = 0; i < acceptArray.length; i++) {
@@ -17,7 +33,6 @@ function resolveHtmlRequested(acceptHeaderValue: string | undefined): boolean{
 		return false;
 	}
 }
-
 app.use(function (req: Request, res: Response, next: NextFunction) {
 	req.pipe(concat(function (data: Buffer): void {
 		req.body = data.toString('utf8');
@@ -60,3 +75,4 @@ app.all('*', function (req: Request, res: Response) {
 })
 
 app.listen(3000)
+
