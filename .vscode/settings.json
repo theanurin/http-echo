@@ -22,7 +22,7 @@
 		".git": true,
 		"node_modules": true,
 		"src/**/*.d.ts": true,
-		"src/**/*.js": true,
+		// "src/**/*.js": true,
 		"src/**/*.map": true,
 	},
 	"[typescript]": {

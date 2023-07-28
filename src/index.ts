@@ -3,22 +3,38 @@ import concat from 'concat-stream';
 import os from 'node:os';
 import morgan from 'morgan';
 
+import { Settings } from "./settings";
+import { parseSettings } from "./parseSettings";
+
+
+
+const mySettings: Settings = parseSettings(process.argv.splice(2));
+
 const app: Express = expressModule();
+
+// const args: string [] = process.argv;
+// console.log(args);
+
+// const options: {
+// 	: {
+
+// 	}
+// }
 
 // print('Serving at http://${server.address.host}:${server.port}');
 console.log(
-	'  _   _   _____   _____   ____      _____    ____   _   _    ___  \n',
+	'   _   _   _____   _____   ____      _____   ____    _   _    ___  \n',
 	' | | | | |_   _| |_   _| |  _ \\    |____|  /____|  | | | | /  _  \\  \n',
 	' | |_| |   | |     | |   | |_) |   |  _|   | |     | |_| | | | | |  \n',
 	' |  _  |   | |     | |   |  __/    | |___  | |___  |  _  | | |_| |  \n',
 	' |_| |_|   |_|     |_|   |_|       |_____|  \\____| |_| |_|  \\___/   \n'
-	);
-	console.log('HTTP Echo Service v1.0.0');
-	console.log('');
-	console.log('Using custom background color for HTML page: http://${server.address.host}');
-	console.log('');
-	console.log('Listening for incoming HTTP requests on a port ${server.port}');
-	console.log('');
+);
+console.log('HTTP Echo Service v1.0.0');
+console.log('');
+console.log('Using custom background color for HTML page: http://${server.address.host}');
+console.log('');
+console.log('Listening for incoming HTTP requests on a port ${server.port}');
+console.log('');
 
 function resolveHtmlRequested(acceptHeaderValue: string | undefined): boolean {
 	if (acceptHeaderValue !== undefined) {
@@ -39,6 +55,8 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
 		next();
 	}));
 });
+
+
 
 app.all('*', function (req: Request, res: Response) {
 	const resultData: any = {
@@ -72,7 +90,11 @@ app.all('*', function (req: Request, res: Response) {
 		res.appendHeader("Content-Type", "text/html");
 		res.send('<html><body><pre style="background-color:red; word-wrap: break-word; white-space: pre-wrap;">' + resultDataStr + "</pre></body></html>");
 	}
+
 })
 
-app.listen(3000)
+app.listen(mySettings.port)
 
+// args.forEach((value:string,index:number) => {
+// 	console.log(`${index} -> ${value})
+// });
