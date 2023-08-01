@@ -4,13 +4,12 @@ import os from 'node:os';
 import morgan from 'morgan';
 
 import { Settings } from "./settings";
-import { parseSettings } from "./parseSettings";
-
-
+import { parseSettings, parseSettings2 } from "./parseSettings";
 
 const mySettings: Settings = parseSettings(process.argv.splice(2));
 
 const app: Express = expressModule();
+
 
 // const args: string [] = process.argv;
 // console.log(args);
@@ -56,8 +55,6 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
 	}));
 });
 
-
-
 app.all('*', function (req: Request, res: Response) {
 	const resultData: any = {
 		path: req.path,
@@ -88,7 +85,7 @@ app.all('*', function (req: Request, res: Response) {
 		res.send(resultDataStr);
 	} else {
 		res.appendHeader("Content-Type", "text/html");
-		res.send('<html><body><pre style="background-color:red; word-wrap: break-word; white-space: pre-wrap;">' + resultDataStr + "</pre></body></html>");
+		res.send(`<html><body style="background-color:${mySettings.background};"><pre style="word-wrap: break-word; white-space: pre-wrap;">${resultDataStr}</pre></body></html>`);
 	}
 
 })
