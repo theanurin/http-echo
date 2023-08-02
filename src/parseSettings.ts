@@ -2,6 +2,7 @@ import { stringify } from "node:querystring";
 import { Settings } from "./settings";
 import { error } from "node:console";
 import { ParseArgsConfig, parseArgs } from 'node:util';
+import { Command, program } from 'commander';
 
 // export function parseSettings(args: Array<string>): Settings {
 // 	//
@@ -95,31 +96,67 @@ export function parseSettings(args: Array<string>): Settings {
 	return setting;
 }
 export function parseSettings2(args: Array<string>): Settings {
-	const options = {
-		'port': {
-			type: 'boolean',
-			short: 'p'
-		},
-		'bg-color': {
-			type: 'boolean',
-			short: 'p'
-		},
+	const parseConfig: ParseArgsConfig = {
+		args,
+		strict: true,
+		options: {
+			"port": {
+				type: 'string',
+				short: 'p',
+			},
+			"bg-color": {
+				type: 'string',
+				short: 'p',
+			},
+		}
+	};
+
+	const { values } = parseArgs(parseConfig);
+
+	const portRaw = values["port"];
+	const backgroundRaw = values["bg-color"];
+
+	if (typeof portRaw !== "string") {
+		throw new ArgParserException(
+			"Bad value specified for argument '--port'",
+		);
 	}
 
+	if (typeof backgroundRaw !== "string") {
+		throw new ArgParserException(
+			"Bad value specified for argument '--bg-color'",
+		);
+	}
 
-	const setting = new Settings(3000, "#ffffff");
+	const port: number | null = Number.parseInt(portRaw);
+	const background: string = backgroundRaw;
+
+	// const options: any = {
+	// 	"port": {
+	// 		type: 'string',
+	// 		short: 'p'
+	// 	},
+	// 	"bg-color": {
+	// 		type: 'string',
+	// 		short: 'b'
+	// 	},
+
+	// }
+	// const res: { values: {} | { [x: string]: string | boolean | (string | boolean)[] | undefined; }; } = parseArgs({ options, args });
+	// console.log(res);
+	const setting = new Settings(port, background);
 	return setting;
 }
+
 
 export class ArgParserException extends Error {
 	public readonly usage: string;
 
 	constructor(
 		message: string,
-		usage: string = "--port (mandatory),    Set Web server listen port --bg-color (mandatory)    Set background color of HTML page",
 	) {
 		super(message);
 
-		this.usage = usage;
+		this.usage = "--port (mandatory),    Set Web server listen port --bg-color (mandatory)    Set background color of HTML page";
 	}
 }
