@@ -4,9 +4,9 @@ import os from 'node:os';
 import morgan from 'morgan';
 
 import { Settings } from "./settings";
-import { parseSettings, parseSettings2 } from "./parseSettings";
+import { parseSettings2 } from "./parseSettings";
 
-const mySettings: Settings = parseSettings(process.argv.splice(2));
+const mySettings: Settings = parseSettings2(process.argv.splice(2));
 
 const app: Express = expressModule();
 
