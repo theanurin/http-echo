@@ -10,7 +10,7 @@ env:
   # Repo-root relative path to directory with your Dockerfile(s)
   DOCKER_FILES_DIR: docker
   # Comma separated list of Docker platforms
-  DOCKER_PLATFORMS: linux/arm64,linux/amd64
+  DOCKER_PLATFORMS: linux/amd64, linux/arm64
   # Define one of test report format: dart-json, dotnet-trx, flutter-json, java-junit, jest-junit, mocha-json
   TEST_REPORT_FORMAT: java-junit
   # Set path to GitHub Container Repository/
@@ -18,7 +18,7 @@ env:
   #REGISTRY_GHCR_REPOSITORY_PATH: "${{ github.repository }}/orphan-branch"
   # To enable publish into Docker Hub (https://hub.docker.com/)
   # by set Docker Hub user/organization ID
-  #REGISTRY_DOCKERHUB_REPOSITORY_ORG: "${{ github.repository_owner }}"
+  REGISTRY_DOCKERHUB_REPOSITORY_ORG: "${{ github.repository_owner }}"
 
 on:
   push:

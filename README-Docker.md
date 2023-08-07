@@ -31,7 +31,7 @@ This variables passes the names of the color to change background color
 
 # Inside
 
-* echo-http v1.0.0
+* http-echo v0.0.2
 
 # Build and Launch
 
