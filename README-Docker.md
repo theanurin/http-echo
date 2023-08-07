@@ -17,21 +17,12 @@ Docker creates an image to change the background-color of your application in th
 
 ## Environment variables
 
-This variables passes the names of the color to change background color
-
-* `ECHO_BG_COLOR`
+* `ECHO_BG_COLOR`- This variables passes the names of the color to change background color
+* `ECHO_PORT`- This variables passes the names of the port
 
 ## Expose ports
 
-* `tcp/8080` - echo-http listening endpoint
-
-## Volumes
-
-* No any volumes
-
-# Inside
-
-* http-echo v0.0.2
+* `tcp/8080` - http-echo listening endpoint
 
 # Build and Launch
 
@@ -48,12 +39,6 @@ docker run --rm --interactive --tty \
   echo
 ```
 
-## Services
-
-Service     | Port | Usage
-------------|------|------
-HTTP-ECHO   | 8080 | When using `http-echo`, visit `http://localhost:8080` in your browser
-
 # Support
 
-* Maintained by: [Dmitry Detukov](https://detukov.name/)
+* Maintained by: [Dmitry Detukov, Max Anurin](https://anurin.name/)
