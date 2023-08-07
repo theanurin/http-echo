@@ -1,7 +1,7 @@
-[![Docker Image Version](https://img.shields.io/docker/v/thedetukov/echo-http?sort=date&label=Version)](https://hub.docker.com/r/thedetukov/echo-http/tags)
-[![Docker Image Size](https://img.shields.io/docker/image-size/thedetukov/echo-http?label=Image%20Size)](https://hub.docker.com/r/thedetukov/echo-http/tags)
-[![Docker Pulls](https://img.shields.io/docker/pulls/thedetukov/echo-http?label=Pulls)](https://hub.docker.com/r/thedetukov/echo-http)
-[![Docker Stars](https://img.shields.io/docker/stars/thedetukov/echo-http?label=Docker%20Stars)](https://hub.docker.com/r/thedetukov/echo-http)
+[![Docker Image Version](https://img.shields.io/docker/v/theanurin/http-echo?sort=date&label=Version)](https://hub.docker.com/r/theanurin/http-echo/tags)
+[![Docker Image Size](https://img.shields.io/docker/image-size/theanurin/http-echo?label=Image%20Size)](https://hub.docker.com/r/theanurin/http-echo/tags)
+[![Docker Pulls](https://img.shields.io/docker/pulls/theanurin/http-echo?label=Pulls)](https://hub.docker.com/r/theanurin/http-echo)
+[![Docker Stars](https://img.shields.io/docker/stars/theanurin/http-echo?label=Docker%20Stars)](https://hub.docker.com/r/theanurin/http-echo)
 
 # HTTP-ECHO
 
@@ -41,4 +41,4 @@ docker run --rm --interactive --tty \
 
 # Support
 
-* Maintained by: [Dmitry Detukov, Max Anurin](https://anurin.name/)
+* Maintained by: [Dmitry Detukov](https://t.me/thedem_on), [Max Anurin](https://anurin.name/)
