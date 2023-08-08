@@ -29,6 +29,7 @@ Run the Docker image:
 
 ```shell
   docker run --rm --interactive --tty \
+  --env "ECHO_PORT=8080" \
   --env "ECHO_BG_COLOR=#ff0000" \
   --publish 8080:8080 \
   echo

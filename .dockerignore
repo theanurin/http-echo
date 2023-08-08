@@ -7,5 +7,6 @@
 !./docker/docker-entrypoint.sh
 !./lib/args_parser.dart
 !./lib/settings.dart
+!./analysis_options.yaml
 !./pubspec.lock
 !./pubspec.yaml

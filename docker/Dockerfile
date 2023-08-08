@@ -31,6 +31,6 @@ COPY docker/docker-entrypoint.sh /dist/usr/local/bin/docker-entrypoint-echo.sh
 FROM debian:bullseye-slim
 COPY --from=builder /runtime/ /
 COPY --from=builder /dist/ /
-ENV ECHO_BG_COLOR=
-ENV ECHO_PORT=
+ENV ECHO_BG_COLOR=#ffffff
+ENV ECHO_PORT=8080
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint-echo.sh"]

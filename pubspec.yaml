@@ -1,6 +1,6 @@
 name: echo
 description: A starting point for Dart libraries or applications.
-version: 0.0.9
+version: 0.0.10
 # homepage: https://www.example.com
 
 environment:
