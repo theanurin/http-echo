@@ -65,15 +65,13 @@ bool resolveHtmlRequested(String? acceptHeaderValue) {
   return false;
 }
 
-bool isNeedToReadBodyString(final String? mimeType) {
-  final parseMimetype = ContentType.parse(mimeType.toString());
+bool isNeedToReadBodyString(final String? mimeTypeStr) {
+  if (mimeTypeStr == null) return true;
 
-  if (parseMimetype.primaryType == "text" ||
-      parseMimetype.subType == "" ||
-      parseMimetype.subType == "application/json" ||
-      parseMimetype.subType == "text/****") {
-    return true;
-  }
+  final mimeType = ContentType.parse(mimeTypeStr);
+
+  if (mimeType.mimeType == "application/json") return true;
+  if (mimeType.primaryType == "text") return true;
 
   return false;
 }
