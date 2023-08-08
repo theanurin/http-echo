@@ -65,13 +65,31 @@ bool resolveHtmlRequested(String? acceptHeaderValue) {
   return false;
 }
 
+bool isNeedToReadBodyString(final String? mimeType) {
+  final parseMimetype = ContentType.parse(mimeType.toString());
+
+  if (parseMimetype.primaryType == "text" ||
+      parseMimetype.subType == "" ||
+      parseMimetype.subType == "application/json" ||
+      parseMimetype.subType == "text/****") {
+    return true;
+  }
+
+  return false;
+}
+
 Future<Response> _handler(Request request) async {
   final HttpConnectionInfo? httpConnInfo =
       request.context["shelf.io.connection_info"] as HttpConnectionInfo?;
 
   final String hostname = Platform.localHostname;
 
-  final String body = await request.readAsString();
+  // ignore: avoid_init_to_null
+  String? body = null;
+
+  if (isNeedToReadBodyString(request.mimeType)) {
+    body = await request.readAsString();
+  }
 
   final Map dataRaw = {
     "path": request.requestedUri.path,
